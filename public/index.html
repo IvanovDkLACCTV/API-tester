@@ -37,13 +37,18 @@
 
 <!-- PATCH body -->
 <div id="patchFields" style="display:none;">
-  <label>Тело PATCH-запроса (JSON):</label>
-  <textarea id="patchBody">{ 
-    "section": "system", 
-    "key": "alarm_port", 
-    "value": 9100 
-}
-</textarea>
+  <div>
+    <label>Section:</label>
+    <input type="text" id="patchSection" value="system">
+  </div>
+  <div>
+    <label>Key:</label>
+    <input type="text" id="patchKey" value="alarm_port">
+  </div>
+  <div>
+    <label>Value:</label>
+    <input type="number" id="patchValue" value="9100">
+  </div>
 </div>
 
 <div class="footer">
