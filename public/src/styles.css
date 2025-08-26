@@ -44,3 +44,9 @@ textarea {
 .url-row input {
     flex: 1;
 }
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

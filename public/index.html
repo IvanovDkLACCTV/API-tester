@@ -46,9 +46,171 @@
 </textarea>
 </div>
 
+<div class="footer">
+  <div class="left">
 <h2>Ответ:</h2>
 <pre id="response"></pre>
 <button id="saveBtn" style="display:none;">Сохранить в файл</button>
+  </div>
+  <div class="right">
+    <table>
+      <thead>
+        <tr>
+          <th>Раздел</th>
+          <th>Ключ</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="section" rowspan="8"><strong>system</strong></td>
+          <td class="key"><code>model</code></td>
+          <td>Модель YOLO</td>
+        </tr>
+        <tr>
+          <td class="key"><code>rtsp_stream_url</code></td>
+          <td>URL исходного видеопотока</td>
+        </tr>
+        <tr>
+          <td class="key"><code>shape_predictor</code></td>
+          <td>Путь к файлу shape_predictor</td>
+        </tr>
+        <tr>
+          <td class="key"><code>alarm_host</code></td>
+          <td>Хост для отправки тревог</td>
+        </tr>
+        <tr>
+          <td class="key"><code>alarm_port</code></td>
+          <td>Порт для тревог</td>
+        </tr>
+        <tr>
+          <td class="key"><code>target_host</code></td>
+          <td>Дополнительный хост</td>
+        </tr>
+        <tr>
+          <td class="key"><code>target_port</code></td>
+          <td>Дополнительный порт</td>
+        </tr>
+        <tr>
+          <td class="key"><code>output_stream_url</code></td>
+          <td>URL обработанного видеопотока</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>cigarette</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность фиксации курения (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции курения</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>closed_eyes</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность закрытых глаз (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции закрытых глаз</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>closed_eyes_duration</strong></td>
+          <td class="key"><code>tracking_window</code></td>
+          <td>Окно отслеживания времени (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог длительности закрытых глаз</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="3"><strong>head_pose</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность поворота головы (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>pitch</code></td>
+          <td>Угол наклона головы</td>
+        </tr>
+        <tr>
+          <td class="key"><code>yaw</code></td>
+          <td>Угол поворота головы</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>no_belt</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность отсутствия ремня безопасности (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>no_driver</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность отсутствия водителя (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>no_face</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность отсутствия лица (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>phone</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность использования телефона (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="2"><strong>yawn</strong></td>
+          <td class="key"><code>duration</code></td>
+          <td>Длительность зевоты (сек)</td>
+        </tr>
+        <tr>
+          <td class="key"><code>threshold</code></td>
+          <td>Порог уверенности детекции</td>
+        </tr>
+  
+        <tr>
+          <td class="section" rowspan="4"><strong>rockchip</strong></td>
+          <td class="key"><code>ip</code></td>
+          <td>IP адрес Rockchip</td>
+        </tr>
+        <tr>
+          <td class="key"><code>user</code></td>
+          <td>Пользователь Rockchip</td>
+        </tr>
+        <tr>
+          <td class="key"><code>password</code></td>
+          <td>Пароль Rockchip</td>
+        </tr>
+        <tr>
+          <td class="key"><code>config_path</code></td>
+          <td>Путь к конфигу на Rockchip</td>
+        </tr>
+      </tbody>
+  </div>
+  </div>
+
 
 
 <script src="src/script.js"></script>
