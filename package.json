@@ -1,0 +1,11 @@
+{
+    "name": "api-tester",
+    "sourceType": "module",
+    "type": "module",
+    "bin": "server.mjs",
+    "pkg": {
+        "assets": [
+            "public/**/*"
+        ]
+    }
+}

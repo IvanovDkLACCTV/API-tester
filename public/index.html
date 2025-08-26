@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="src/styles.css" />
+<title>API Tester</title>
+
+</head>
+<body>
+<h1>Тестирование API</h1>
+
+<!-- Адрес -->
+<label>Адрес API:</label>
+<div class="url-row">
+  <span>http://</span>
+  <input id="host" value="192.168.1.90">
+  <span>:</span>
+  <input id="port" value="8000" style="width:80px;">
+</div>
+
+<!-- Раздел + кнопка + метод -->
+<div class="row">
+<select id="section">
+  <option value="">(весь конфиг)</option>
+  <option value="system">system</option>
+  <option value="closed_eyes">closed_eyes</option>
+  <option value="closed_eyes_duration">closed_eyes_duration</option>
+</select>
+
+  <button id="sendBtn">Отправить</button>
+
+  <select id="method">
+    <option value="GET">GET</option>
+    <option value="PATCH">PATCH</option>
+  </select>
+</div>
+
+<!-- PATCH body -->
+<div id="patchFields" style="display:none;">
+  <label>Тело PATCH-запроса (JSON):</label>
+  <textarea id="patchBody">{ 
+    "section": "system", 
+    "key": "alarm_port", 
+    "value": 9100 
+}
+</textarea>
+</div>
+
+<h2>Ответ:</h2>
+<pre id="response"></pre>
+<button id="saveBtn" style="display:none;">Сохранить в файл</button>
+
+
+<script src="src/script.js"></script>
+
+
+</body>
+</html>
