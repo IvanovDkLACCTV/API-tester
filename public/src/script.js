@@ -1,7 +1,7 @@
 let lastResponse = null; // будем хранить последний ответ
 
 document.getElementById("method").addEventListener("change", e => {
-  document.getElementById("patchFields").style.display = e.target.value === "PATCH" ? "block" : "none";
+  document.getElementById("textarea").style.display = e.target.value === "PATCH" ? "block" : "none";
 });
 
 document.getElementById("sendBtn").addEventListener("click", async () => {
@@ -10,24 +10,54 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
   const baseUrl = `http://${host}:${port}`;
   const section = document.getElementById("section").value;
   const method = document.getElementById("method").value;
-  const body = method === "PATCH" ? JSON.parse(document.getElementById("patchBody").value) : null;
 
-  const res = await fetch("/api/proxy", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ baseUrl, section, method, body })
-  });
+  let body = null;
 
-  const data = await res.json();
-  lastResponse = data;
-  document.getElementById("response").textContent = JSON.stringify(data, null, 2);
-  document.getElementById("saveBtn").style.display = "inline-block";
+  if (method === "PATCH") {
+    const raw = document.getElementById("patchBody").value;
+    try {
+      body = JSON.parse(raw);
+    } catch (err) {
+      document.getElementById("response").textContent = "❌ Невалидный JSON в PATCH-теле";
+      return;
+    }
+  }
+
+  const payload = {
+    baseUrl,
+    method,
+    ...(section && method !== "PATCH" ? { section } : {}),
+    ...(body ? { body } : {})
+  };
+
+  try {
+    const res = await fetch("/api/proxy", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const text = await res.text();
+    console.log("Ответ от сервера:", text);
+
+    try {
+      const data = JSON.parse(text);
+      lastResponse = data;
+      document.getElementById("response").textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+      document.getElementById("response").textContent = "⚠️ Ответ не JSON: " + text;
+    }
+
+    document.getElementById("saveBtn").style.display = "inline-block";
+  } catch (err) {
+    console.error("Ошибка запроса:", err);
+    document.getElementById("response").textContent = "❌ Ошибка запроса: " + err.message;
+  }
 });
 
 document.getElementById("saveBtn").addEventListener("click", () => {
   if (!lastResponse) return;
 
-  // Формируем имя файла: api-response_ГГГГ-ММ-ДД_ЧЧ-ММ.json
   const now = new Date();
   const pad = n => String(n).padStart(2, '0');
   const fileName = `api-response_${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}.json`;

@@ -23,8 +23,17 @@
 <select id="section">
   <option value="">(весь конфиг)</option>
   <option value="system">system</option>
+  <option value="cigarette">cigarette</option>
   <option value="closed_eyes">closed_eyes</option>
   <option value="closed_eyes_duration">closed_eyes_duration</option>
+  <option value="head_pose">head_pose</option>
+  <option value="no_belt">no_belt</option>
+  <option value="no_driver">no_driver</option>
+  <option value="no_face">no_face</option>
+  <option value="phone">phone</option>
+  <option value="yawn">yawn</option>
+  <option value="rockchip">rockchip</option>
+
 </select>
 
   <button id="sendBtn">Отправить</button>
@@ -35,24 +44,19 @@
   </select>
 </div>
 
-<!-- PATCH body -->
-<div id="patchFields" style="display:none;">
-  <div>
-    <label>Section:</label>
-    <input type="text" id="patchSection" value="system">
-  </div>
-  <div>
-    <label>Key:</label>
-    <input type="text" id="patchKey" value="alarm_port">
-  </div>
-  <div>
-    <label>Value:</label>
-    <input type="number" id="patchValue" value="9100">
-  </div>
-</div>
-
 <div class="footer">
   <div class="left">
+    <!-- PATCH body -->
+<div id="textarea" style="display:none;">
+  <label for="patchBody">PATCH JSON Body:</label><br>
+  <textarea id="patchBody" rows="10" cols="50">
+{
+  "section": "closed_eyes",
+  "key": "threshold",
+  "value": 0.98
+}
+  </textarea>
+</div>
 <h2>Ответ:</h2>
 <pre id="response"></pre>
 <button id="saveBtn" style="display:none;">Сохранить в файл</button>
@@ -215,6 +219,7 @@
       </tbody>
   </div>
   </div>
+
 
 
 
